@@ -253,7 +253,7 @@ extension SKZoomingScrollView: UIScrollViewDelegate {
 // MARK: - SKDetectingImageViewDelegate
 
 extension SKZoomingScrollView: SKDetectingViewDelegate {
-    func handleSingleTap(_ view: UIView, touch: UITouch) {
+    func handleSingleTap(_ view: UIView, touchPoint: CGPoint) {
         guard let browser = photoBrowser else {
             return
         }
@@ -268,9 +268,9 @@ extension SKZoomingScrollView: SKDetectingViewDelegate {
         }
     }
     
-    func handleDoubleTap(_ view: UIView, touch: UITouch) {
+    func handleDoubleTap(_ view: UIView, touchPoint: CGPoint) {
         if SKPhotoBrowserOptions.enableZoomBlackArea == true {
-            let needPoint = getViewFramePercent(view, touch: touch)
+            let needPoint = getViewFramePercent(view, viewTouchPoint: touchPoint)
             handleDoubleTap(needPoint)
         }
     }
@@ -297,9 +297,8 @@ extension SKZoomingScrollView: SKDetectingImageViewDelegate {
 }
 
 private extension SKZoomingScrollView {
-    func getViewFramePercent(_ view: UIView, touch: UITouch) -> CGPoint {
+    func getViewFramePercent(_ view: UIView, viewTouchPoint: CGPoint) -> CGPoint {
         let oneWidthViewPercent = view.bounds.width / 100
-        let viewTouchPoint = touch.location(in: view)
         let viewWidthTouch = viewTouchPoint.x
         let viewPercentTouch = viewWidthTouch / oneWidthViewPercent
         

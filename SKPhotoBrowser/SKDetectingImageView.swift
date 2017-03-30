@@ -14,6 +14,7 @@ import UIKit
 }
 
 class SKDetectingImageView: UIImageView {
+    
     weak var delegate: SKDetectingImageViewDelegate?
     
     required init?(coder aDecoder: NSCoder) {
@@ -26,12 +27,12 @@ class SKDetectingImageView: UIImageView {
         setup()
     }
     
-    func handleDoubleTap(_ recognizer: UITapGestureRecognizer) {
-        delegate?.handleImageViewDoubleTap(recognizer.location(in: self))
-    }
-    
     func handleSingleTap(_ recognizer: UITapGestureRecognizer) {
         delegate?.handleImageViewSingleTap(recognizer.location(in: self))
+    }
+    
+    func handleDoubleTap(_ recognizer: UITapGestureRecognizer) {
+        delegate?.handleImageViewDoubleTap(recognizer.location(in: self))
     }
 }
 

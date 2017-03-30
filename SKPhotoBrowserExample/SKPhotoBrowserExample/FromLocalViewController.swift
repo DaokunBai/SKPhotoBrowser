@@ -17,9 +17,22 @@ class FromLocalViewController: UIViewController, UICollectionViewDataSource, UIC
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Static setup
-        SKPhotoBrowserOptions.displayAction = false
-        SKPhotoBrowserOptions.displayStatusbar = true
+        SKPhotoBrowserOptions.displayStatusbar = false  // 是否显示状态栏
+        SKPhotoBrowserOptions.displayAction = true      // 分享按钮
+        SKPhotoBrowserOptions.shareExtraCaption = nil // 标题之外统一拼接的内容
+        SKPhotoBrowserOptions.actionButtonTitles = ["保存到相册", "分享"]
+        SKPhotoBrowserOptions.displayToolbar = true   // 是否显示工具条
+        SKPhotoBrowserOptions.displayCounterLabel = true    // 是否显示页码
+        SKPhotoBrowserOptions.displayBackAndForwardButton = false    // 页码左右箭头按钮
+        SKPhotoBrowserOptions.disableVerticalSwipe = true   // 是否开启垂直方向轻扫手势退出模式
+        SKPhotoBrowserOptions.displayCloseButton =  false    // 退出浏览模式按钮
+        SKPhotoBrowserOptions.displayDeleteButton = false    // 删除照片按钮
+        SKPhotoBrowserOptions.displayHorizontalScrollIndicator = false // 是否显示水平滚动条
+        SKPhotoBrowserOptions.displayVerticalScrollIndicator = false // 是否显示垂直滚动条
+        SKPhotoBrowserOptions.bounceAnimation = true   // 图片显示时，是否不要弹性动画
+        SKPhotoBrowserOptions.enableZoomBlackArea = true  // 图片外的区域是否响应时间（单击退出）
+        SKPhotoBrowserOptions.enableSingleTapDismiss = true // 是否启用单击退出浏览模式功能
+        SKPhotoBrowserOptions.backgroundColor = .black   // 图片显示外的区域背景色
 
         setupTestData()
         setupCollectionView()
@@ -134,7 +147,7 @@ private extension FromLocalViewController {
     func createLocalPhotos() -> [SKPhotoProtocol] {
         return (0..<10).map { (i: Int) -> SKPhotoProtocol in
             let photo = SKPhoto.photoWithImage(UIImage(named: "image\(i%10).jpg")!)
-            photo.caption = caption[i%10]
+//            photo.caption = caption[i%10]
 //            photo.contentMode = .ScaleAspectFill
             return photo
         }
